@@ -1,24 +1,27 @@
-# Accordion Component
+# Tip Calculator
 
-This project is a simple accordion component built with React. The accordion allows users to expand and collapse sections to reveal or hide content.
+## Overview
+
+The Tip Calculator is a simple React application that helps users calculate the tip amount based on the total bill and the desired tip percentage.
 
 ## Features
 
-- Expand and collapse sections
-- Smooth animations
-- Customizable styles
+- Input for total bill amount
+- Input for desired tip percentage
+- Calculation of tip amount
+- Display of total amount including tip
 
 ## Installation
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/mohamedkbx/accordion-component.git
+   git clone https://github.com/mohamedkbx/tip-calculator.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd accordion-component
+   cd tip-calculator
    ```
-3. Install dependencies:
+3. Install the dependencies:
    ```sh
    npm install
    ```
@@ -31,10 +34,6 @@ This project is a simple accordion component built with React. The accordion all
    ```
 2. Open your browser and navigate to `http://localhost:3000`.
 
-## Customization
-
-You can customize the styles of the accordion by modifying the CSS files in the `src/styles` directory.
-
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
