@@ -2,33 +2,38 @@ import { useState } from "react";
 import "./index.css";
 
 export default function App() {
+  const [selfService, setSelfService] = useState(0);
+  const [friendService, setfriendService] = useState(0);
+  const [billAmount, setBillAmount] = useState(null);
+
   return (
     <div style={{ marginLeft: "50px", marginTop: "50px" }}>
-      <BillAmount id="billAmount" text="How much Was the bill" />
-      <SelfService />
-      <FriendService />
-      <Recip />
+      <BillAmount
+        billAmount={billAmount}
+        setBillAmount={setBillAmount}
+        id="billAmount"
+        text="How much Was the bill"
+      />
+      <SelfService selfService={selfService} setSelfService={setSelfService} />
+      <FriendService friendService={friendService} setfriendService={setfriendService} />
+      <Recip selfService={selfService} friendService={friendService} billAmount={billAmount} />
     </div>
   );
 }
 
-function BillAmount({ id, text }) {
-  const [billAmount, setBillAmount] = useState(null);
-
+function BillAmount({ billAmount, setBillAmount, id, text }) {
   function handleBillAmount(event) {
-    setBillAmount(event.target.value);
+    setBillAmount(Number(event.target.value));
   }
   return (
     <div>
       <label htmlFor={id}>{text}</label>
-      <input type="text" id={id} value={billAmount} onChange={handleBillAmount} />
+      <input type="number" id={id} value={billAmount} onChange={handleBillAmount} />
     </div>
   );
 }
 
-function SelfService() {
-  const [selfService, setSelfService] = useState(0);
-
+function SelfService({ selfService, setSelfService }) {
   function handleSelfService(event) {
     setSelfService(Number(event.target.value));
   }
@@ -46,9 +51,7 @@ function SelfService() {
   );
 }
 
-function FriendService() {
-  const [friendService, setfriendService] = useState(0);
-
+function FriendService({ friendService, setfriendService }) {
   function handleFriendService(event) {
     setfriendService(Number(event.target.value));
   }
@@ -66,12 +69,15 @@ function FriendService() {
   );
 }
 
-function Recip() {
+function Recip({ selfService, friendService, billAmount }) {
+  const tip = ((selfService + friendService) / 2 / 100) * billAmount;
+  const bill = billAmount;
+  const total = bill + tip;
   return (
     <div style={{ marginTop: "20px" }}>
-      <h4>Recip</h4>
+      <h2 style={{ marginBottom: "20px" }}>Recip</h2>
 
-      <p>You Pay: $50 ($45 + $5)</p>
+      <h3>You Pay:{`$${total}($${bill} + $${tip})`}</h3>
     </div>
   );
 }
