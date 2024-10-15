@@ -14,12 +14,12 @@ export default function App() {
         id="billAmount"
         text="How much Was the bill"
       />
-      <SelfService percent={selfService} setPercent={setSelfService}>
+      <GetService percent={selfService} setPercent={setSelfService}>
         <label htmlFor="selfservice">How Do you love the service </label>
-      </SelfService>
-      <SelfService percent={friendService} setPercent={setfriendService}>
+      </GetService>
+      <GetService percent={friendService} setPercent={setfriendService}>
         <label htmlFor="friendservice">How Do your Friend Like the service </label>
-      </SelfService>
+      </GetService>
       <Recip selfService={selfService} friendService={friendService} billAmount={billAmount} />
       <Reset
         setBillAmount={setBillAmount}
@@ -42,15 +42,15 @@ function BillAmount({ billAmount, setBillAmount, id, text }) {
   );
 }
 
-function SelfService({ percent, setPercent, children }) {
-  function handleSelfService(event) {
-    setSelfService(Number(event.target.value));
+function GetService({ percent, setPercent, children }) {
+  function handleService(event) {
+    setPercent(Number(event.target.value));
   }
 
   return (
     <div>
       {children}
-      <select id="selfservice" value={percent} onChange={setPercent}>
+      <select id="selfservice" value={percent} onChange={handleService}>
         <option value="0">Dissatisfied(0%)</option>
         <option value="5">it was okay (5%)</option>
         <option value="10">it was good (10%)</option>
