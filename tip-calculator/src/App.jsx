@@ -20,12 +20,16 @@ export default function App() {
       <GetService percent={friendService} setPercent={setfriendService}>
         <label htmlFor="friendservice">How Do your Friend Like the service </label>
       </GetService>
-      <Recip selfService={selfService} friendService={friendService} billAmount={billAmount} />
-      <Reset
-        setBillAmount={setBillAmount}
-        setSelfService={setSelfService}
-        setfriendService={setfriendService}
-      />
+      {billAmount > 0 && (
+        <>
+          <Recip selfService={selfService} friendService={friendService} billAmount={billAmount} />
+          <Reset
+            setBillAmount={setBillAmount}
+            setSelfService={setSelfService}
+            setfriendService={setfriendService}
+          />
+        </>
+      )}
     </div>
   );
 }
@@ -37,7 +41,13 @@ function BillAmount({ billAmount, setBillAmount, id, text }) {
   return (
     <div>
       <label htmlFor={id}>{text}</label>
-      <input type="number" id={id} value={billAmount} onChange={handleBillAmount} />
+      <input
+        type="number"
+        placeholder="Bill Amount"
+        id={id}
+        value={billAmount}
+        onChange={handleBillAmount}
+      />
     </div>
   );
 }
